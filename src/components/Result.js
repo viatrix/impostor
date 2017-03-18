@@ -11,11 +11,13 @@ class Result extends Component {
           lastAnswerId = this.props.answers[i].answer;
           res += (" "+resultsImport[lastQuestionId][lastAnswerId]);
       }
+     if (this.props.showResults){
      return(
         <div>
          {res}
         </div>
-     );
+    );}
+    else {return(null);}
   }
 }
 

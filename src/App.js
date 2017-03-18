@@ -13,7 +13,8 @@ class App extends Component {
                     questionId: 0,
                     questions: questionsImport,
                     buttonIsDisabled: false,
-                    processAnswer: this.processAnswer};
+                    processAnswer: this.processAnswer,
+                    showResults: false};
      }
 
 
@@ -42,7 +43,11 @@ class App extends Component {
                 {this.state.questions[this.state.questionId].text}
            </div>
            <Answer processAnswer={this.state.processAnswer} buttonIsDisabled={this.state.buttonIsDisabled}/>
-           <Result answers={this.state.answers}/>
+           <input id="showResultsButton" type="button"
+                value={this.state.showResults?"Спрятать результаты":"Показать результаты"}
+                onClick={() => {this.setState({showResults: !this.state.showResults});}}/>
+            {this.state.showResults}
+           <Result answers={this.state.answers} showResults={this.state.showResults}/>
         </div>
       </div>
     );
