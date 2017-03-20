@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-let answersText = ["совсем не подходит",
-                "не очень подходит",
-                "нейтрально",
-                "в основном подходит",
-                "полностью подходит"];
+let answersText = ["никогда",
+                "редко",
+                "иногда",
+                "часто",
+                "всегда"];
 
 class Answer extends Component {
     constructor(props) {
@@ -46,7 +46,8 @@ class Answer extends Component {
                      onChange={(event) => {this.setState({answerSelected: event.target.value})
                  }}/>{answersText[4]}
              </label>
-            <input id="answerButton" type="button" value="Ответить" onClick={this.handleClick} disabled={this.props.buttonIsDisabled}/>
+            <input id="answerButton" type="button" value="Ответить"
+                onClick={this.handleClick} disabled={this.props.buttonIsDisabled}/>
          </div>
     );
   }
