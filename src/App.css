@@ -1,32 +1,42 @@
 .App {
   text-align: left;
+  font-size: large;
+  display: block;
 }
 
 .App-header {
   background-color: #337ab7;
-  height: 110px;
-  padding: 10px;
+  padding: 2px;
   color: white;
   text-align: center;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.App-intro label {
-    display: block;
+Panel header {
+    height: 100px;
 }
 
 input[type="button"] {
-      margin-bottom: 20px;
+      margin-top: 10px;
+}
+
+#answerPlace {
+    display: block;
+    font-weight: normal;
+     font-size: large;
+    text-align: center;
+}
+
+#answerPlace Button{
+     font-size: large;
+}
+
+Answer{
+    display: block;
+    font-weight: normal;
+    text-align: center;
 }
 
 #questionPlace {
-    height: 80px;
+    min-height: 75px;
+    text-align: center;
 }

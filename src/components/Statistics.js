@@ -5,7 +5,7 @@ class Statistics extends Component {
     render() {
        return(
            <div>
-           Вы - единственный и неповторимый в своих ответах
+           Статистика недоступна
            </div>
       );
     }

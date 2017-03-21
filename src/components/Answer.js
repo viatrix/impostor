@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../App.css';
+import {ButtonGroup, Button} from 'react-bootstrap'
 
 let answersText = ["никогда",
                 "редко",
@@ -19,6 +21,29 @@ class Answer extends Component {
     }
 
   render() {
+      return (
+        <ButtonGroup className="answerPlace">
+            <Button onClick={(event) =>{this.props.processAnswer("0");}}
+                disabled={this.props.buttonIsDisabled}>
+                {answersText[0]}</Button>
+            <Button onClick={(event) =>{this.props.processAnswer("1");}}
+                disabled={this.props.buttonIsDisabled}>
+                {answersText[1]}</Button>
+            <Button onClick={(event) =>{this.props.processAnswer("2");
+                    event.target.removeClass('active');}}
+                disabled={this.props.buttonIsDisabled}>
+                {answersText[2]}</Button>
+            <Button onClick={(event) =>{this.props.processAnswer("3");}}
+                disabled={this.props.buttonIsDisabled}>
+                {answersText[3]}</Button>
+            <Button onClick={(event) =>{this.props.processAnswer("4");}}
+                disabled={this.props.buttonIsDisabled}>
+                {answersText[4]}</Button>
+        </ButtonGroup>
+      );
+  }
+
+  render_old() {
     return (
         <div>
         <label><input name="answer" type="radio" value="0"

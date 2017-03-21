@@ -5,6 +5,7 @@ import Answer from './components/Answer.js';
 import Result from './components/Result.js';
 import Statistics from './components/Statistics.js';
 import resultsImport from './data/results.json';
+import { Panel, PageHeader } from 'react-bootstrap';
 
 class App extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
        this.processAnswer = this.processAnswer.bind(this);
        this.resultImpostor = this.resultImpostor.bind(this);
        this.resultParentification = this.resultParentification.bind(this);
+       this.shuffleQuestions = this.shuffleQuestions.bind(this);
        this.state = {answers: [],
                     answerSelected: "0",
                     questionId: 0,
@@ -31,6 +33,13 @@ class App extends Component {
                     sumPBP: 0,
                     sumPercentsPBP: 0,
                     numQuestionsPBP: 0};
+            this.shuffleQuestions();
+     }
+
+     shuffleQuestions() {
+         var tempQuestions = this.state.questions;
+         tempQuestions.sort(()=>{return Math.random()-0.5;})
+         this.setState({questions: tempQuestions});
      }
 
      resultImpostor() {
@@ -96,31 +105,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Вопрос {this.state.questionId+1} из {this.state.questions.length}</h2>
-          Выбирайте наиболее близкий вам вариант ответа
+      <div className="App-header">
+        <h3>Вопрос {this.state.questionId+1} из {this.state.questions.length}</h3>
+        <h4>Выбирайте наиболее близкий вам вариант ответа</h4>
+      </div>
+      <div className="col-md-9">
+         <Panel id="questionPlace">
+              {this.state.questions[this.state.questionId].text}
+         </Panel>
+         <Panel id="answerPlace">
+         <Answer processAnswer={this.state.processAnswer} buttonIsDisabled={this.state.buttonIsDisabled}/>
+         <p></p>
+         <input id="showResultsButton" type="button"
+              value={this.state.showResults?"Спрятать результаты":"Показать результаты"}
+              onClick={() => {this.setState({showResults: !this.state.showResults});}}/>
+        </Panel>
+         <Result sumPercentsImpostor={this.state.sumPercentsImpostor}
+              sumPercentsPFP={this.state.sumPercentsPFP}
+              sumPercentsSFP={this.state.sumPercentsSFP}
+              sumPercentsPBP={this.state.sumPercentsPBP}
+              showResults={this.state.showResults}/>
         </div>
-        <div className="col-md-8">
-            <div className="col-md-3"></div>
-            <div className="col-md-6">
-            <div className="App-intro">
-                <div id="questionPlace">
-                    {this.state.questions[this.state.questionId].text}
-               </div>
-               <Answer processAnswer={this.state.processAnswer} buttonIsDisabled={this.state.buttonIsDisabled}/>
-               <input id="showResultsButton" type="button"
-                    value={this.state.showResults?"Спрятать результаты":"Показать результаты"}
-                    onClick={() => {this.setState({showResults: !this.state.showResults});}}/>
-               <Result sumPercentsImpostor={this.state.sumPercentsImpostor}
-                    sumPercentsPFP={this.state.sumPercentsPFP}
-                    sumPercentsSFP={this.state.sumPercentsSFP}
-                    sumPercentsPBP={this.state.sumPercentsPBP}
-                    showResults={this.state.showResults}/>
-            </div>
-            </div>
-        </div>
-       <div className="col-md-3 slim">
-            <Statistics/>
+        <div className="col-md-3 slim">
+           <Panel className="test">
+                <Statistics/>
+           </Panel>
         </div>
       </div>
     );
