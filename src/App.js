@@ -5,7 +5,7 @@ import Answer from './components/Answer.js';
 import Result from './components/Result.js';
 import Statistics from './components/Statistics.js';
 import resultsImport from './data/results.json';
-import { Panel, PageHeader } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
 
 class App extends Component {
     constructor(props) {
@@ -116,9 +116,10 @@ class App extends Component {
          <Panel id="answerPlace">
          <Answer processAnswer={this.state.processAnswer} buttonIsDisabled={this.state.buttonIsDisabled}/>
          <p></p>
-         <input id="showResultsButton" type="button"
-              value={this.state.showResults?"Спрятать результаты":"Показать результаты"}
-              onClick={() => {this.setState({showResults: !this.state.showResults});}}/>
+         <Button id="showResultsButton" type="button" bsStyle="primary"
+              onClick={() => {this.setState({showResults: !this.state.showResults});}}>
+              {this.state.showResults?"Спрятать результаты":"Показать результаты"}
+        </Button>
         </Panel>
          <Result sumPercentsImpostor={this.state.sumPercentsImpostor}
               sumPercentsPFP={this.state.sumPercentsPFP}
